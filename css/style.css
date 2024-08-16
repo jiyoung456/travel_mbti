@@ -33,8 +33,26 @@ body {
 }
 
 .bus-icon {
-    position: fixed; /* Fix the icon to the viewport */
-    right: 0; /* Align image to the right */
-    bottom: 0; /* Align image to the bottom */
-    z-index: 1000; /* Ensure the icon stays on top of other elements */
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    transition: transform 1s ease-in-out;
 }
+
+.move-right {
+    animation: moveBus 2s forwards;
+}
+
+@keyframes moveBus {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10%); /* Move slightly to the left */
+    }
+    100% {
+        transform: translateX(100%); /* Move to the right off the screen */
+    }
+}
+

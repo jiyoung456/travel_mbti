@@ -36,3 +36,13 @@ function selectBox(element) {
 }
 
 let selectedValues = []; // This array stores the selections
+
+function moveBus() {
+    const busIcon = document.querySelector('.bus-icon');
+    busIcon.classList.add('move-right');
+
+    // After 2 seconds, redirect to the result page
+    setTimeout(function() {
+        window.location.href = 'result.html';
+    }, 2000);
+}
