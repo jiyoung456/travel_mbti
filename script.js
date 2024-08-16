@@ -12,18 +12,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function selectBox(element) {
-    // Ensure we are not adding the same question twice
     const selectedText = element.textContent.trim();
-    if (!selectedValues.includes(selectedText)) {
-        // Clear previous selection in the same group
-        const siblings = element.parentNode.children;
-        for (let i = 0; i < siblings.length; i++) {
-            siblings[i].classList.remove('selected');
-        }
-        element.classList.add('selected');
-        // Add new selection
-        selectedValues.push(selectedText);
+    const questionArea = element.parentNode;
+    const siblings = questionArea.children;
+
+    // Clear previous selections in the same group
+    for (let i = 0; i < siblings.length; i++) {
+        siblings[i].classList.remove('selected');
     }
+    element.classList.add('selected');
+
+    // Find if there's an existing entry from the same question area
+    const areaIndex = Array.from(document.querySelectorAll('.question-area')).indexOf(questionArea);
+    if (selectedValues[areaIndex]) {
+        // Replace the existing value if one is already recorded from the same area
+        selectedValues[areaIndex] = selectedText;
+    } else {
+        // Extend the array size if necessary
+        selectedValues[areaIndex] = selectedText;
+    }
+    
     console.log(selectedValues);
 }
 
