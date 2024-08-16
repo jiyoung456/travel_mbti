@@ -24,7 +24,7 @@
 }
 
 .question-box.selected, .question-box:hover {
-    background-color: midnightblue; /* Ensure this color shows up */
+    background-color: blueviolet; /* Ensure this color shows up */
 }
 
 
