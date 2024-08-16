@@ -1,0 +1,10 @@
+body{
+    background-image: url('../images/background-image.jpg');
+    background-size: cover;    /* Cover the entire page */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-attachment: fixed; /* Keep the background fixed during scrolling */
+    height: 100vh;           /* Full viewport height */
+    margin: 0;               /* Remove default margin */
+    padding: 0; 
+}
