@@ -1,10 +1,30 @@
 body{
-    background-image: url('../images/background-image.jpg');
-    background-size: cover;    /* Cover the entire page */
+    background-image: url('https://www.urbanbrush.net/web/wp-content/uploads/edd/2023/06/urban-20230619094421261283.jpg');    /* Cover the entire page */
+    background-size: cover;
     background-position: center; /* Center the background image */
     background-repeat: no-repeat; /* Do not repeat the image */
-    background-attachment: fixed; /* Keep the background fixed during scrolling */
-    height: 100vh;           /* Full viewport height */
+    background-attachment: fixed; /* Keep the background fixed during scrolling *          /* Full viewport height */
     margin: 0;               /* Remove default margin */
     padding: 0; 
+    background-color: #91e5f8;
+}
+
+.bus-icon{
+    position: absolute;
+  right: 0; /* Align image to the right */
+  bottom: 0; /* Align image to the bottom */
+
+}
+
+.title {
+  text-align: center;
+  font-size: 60px;
+  font-weight: 600;
+  margin-top: 1.5em;
+}
+
+.sub-title{
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
 }
