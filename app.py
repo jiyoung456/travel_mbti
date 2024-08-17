@@ -8,22 +8,57 @@ app = Flask(__name__)
 # 모델 로드 (pickle을 사용하여 catboost_model.pk1 파일에서 모델 로드)
 with open("catboost_model2.pk1", "rb") as file:
     model = pickle.load(file)
+def map_travel_style(choice,style):
+    mapping={
+        'nature_city': {
+            'nature': range(1, 5), 
+            'city': range(5, 11)    
+        },
+        'plan_no_plan': {
+            'plan': range(1, 5),
+            'no-plan': range(5, 11)
+        },
+        'play_no_play' : {
+            'no-play': range(1,5),
+            'play': range(5,11)
+        },
+        'photo_memory': {
+            'photo': range(5, 11),
+            'memory': range(1,5)
+        },
+        'famous_discover': {
+            'famous': range(5,11),
+            'discover': range(1, 5)
+        }
+    }
+    return sum(mapping[style][choice]) // len(mapping[style][choice])
 
-def test_code():
+def test_code(user_choices):
     results = pd.read_csv('df_final.csv')
         
+    
+    # traveler = {
+    #     'GENDER': 0,
+    #     'AGE_GRP': 40.0,
+    #     'TRAVEL_STYL_1': 1,
+    #     'TRAVEL_STYL_2': 2,
+    #     'TRAVEL_STYL_5': 2,
+    #     'TRAVEL_STYL_6': 4,
+    #     'TRAVEL_STYL_7': 2,
+    #     'TRAVEL_STYL_8': 4,
+    #     'VISIT_ORDER': 13
+    # }
     traveler = {
         'GENDER': 0,
         'AGE_GRP': 40.0,
-        'TRAVEL_STYL_1': 1,
-        'TRAVEL_STYL_2': 2,
-        'TRAVEL_STYL_5': 2,
-        'TRAVEL_STYL_6': 4,
-        'TRAVEL_STYL_7': 2,
-        'TRAVEL_STYL_8': 4,
+        'TRAVEL_STYL_1': map_travel_style(user_choices['nature_city'], 'nature_city'),
+        'TRAVEL_STYL_5': map_travel_style(user_choices['play_no_play'], 'play_no_play'),
+        'TRAVEL_STYL_6': map_travel_style(user_choices['famous_discover'], 'famous_discover'),
+        'TRAVEL_STYL_7': map_travel_style(user_choices['plan_no_plan'], 'plan_no_plan'),
+        'TRAVEL_STYL_8': map_travel_style(user_choices['photo_memory'], 'photo_memory'),
         'VISIT_ORDER': 13
     }
-    
+
     filtered_results = results[
     (results['GENDER'] == traveler['GENDER']) &
     (results['AGE_GRP'] == traveler['AGE_GRP']) &
