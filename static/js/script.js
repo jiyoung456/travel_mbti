@@ -56,8 +56,8 @@ function displayResult(choices) {
     const resultContent = document.getElementById('result-content');
 
     // Example logic to display content based on choices
-    if (choices.includes('nature') && choices.includes('long-trip') && choices.includes('plan')) {
-        resultContent.innerHTML = '<h1>자연과 긴 여행, 계획이 있는 여행 추천!</h1>';
+    if (choices.includes('nature') && choices.includes('long-trip')) {
+        resultContent.innerHTML = '<h1>자연과 긴 여행 추천!</h1>';
         // You can add more complex HTML content here based on the choices
     } else if (choices.includes('city') && choices.includes('day-trip') && choices.includes('no-plan')) {
         resultContent.innerHTML = '<h1>도시와 짧은 당일치기 여행, 계획이 필요 없는 여행 추천!</h1>';
