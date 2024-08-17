@@ -1,3 +1,30 @@
+// 예측 API 호출 함수
+
+function callPredictAPI(features) {
+  const url = "http://127.0.0.1:5500/predict";
+
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ features: features }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("API 요청에 실패했습니다.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("예측 결과:", data.prediction);
+      return data.prediction;
+    })
+    .catch((error) => {
+      console.error("API 호출 중 오류 발생:", error);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -22,41 +49,30 @@ function displayResult(choices) {
       "<h1>선택한 옵션에 해당하는 추천을 찾을 수 없습니다.</h1>";
   }
   alert(choices);
-  callPredictAPI(choices);
 
-  
+  features = choices;
+
+  callPredictAPI(features);
+
+  // callPredictAPI(choices);
+
   // Continue with more combinations...
 }
+// 예측 API 호출 함수 (위에서 작성한 jQuery 코드 포함)
+function callPredictAPI(features) {
+  alert("callPredictAPI");
+  const url = "http://127.0.0.1:5500/predict";
 
-
-// 예측 API 호출 함수
-async function callPredictAPI(features) {
-    const url = "http://127.0.0.1:5000/predict";
-
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ features: features }),
-      });
-
-      if (!response.ok) {
-        throw new Error("API 요청에 실패했습니다.");
-      }
-
-      const data = await response.json();
+  return $.ajax({
+    url: url,
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({ features: features }),
+    success: function (data) {
       console.log("예측 결과:", data.prediction);
-      return data.prediction;
-    } catch (error) {
+    },
+    error: function (xhr, status, error) {
       console.error("API 호출 중 오류 발생:", error);
-    }
-  }
-
-  // 사용 예제
-  const features = [1, 2, 3, 4, 5]; // 예측에 사용할 피처 값들
-  callPredictAPI(features).then((prediction) => {
-    // 예측 결과를 사용하여 추가 작업을 수행
-    console.log("예측된 값:", prediction);
+    },
   });
+}

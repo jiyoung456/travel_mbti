@@ -14,7 +14,8 @@ def predict():
     print("gogo")
     # JSON 요청에서 데이터 가져오기
     data = request.json
-    features = np.array(data['features']).reshape(1, -1)  # 1D array를 2D로 변환
+    print(data)
+    #features = np.array(data['features']).reshape(1, -1)  # 1D array를 2D로 변환
     
     # 예측 수행
     prediction = model.predict(features)
@@ -27,6 +28,11 @@ def predict():
 def index():
     # index.html 파일을 렌더링
     return render_template('index.html')
+
+@app.route('/result.html', methods=['GET'])
+def result():
+    # index.html 파일을 렌더링
+    return render_template('result.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5500)
