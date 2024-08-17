@@ -34,8 +34,7 @@ def map_travel_style(choice,style):
     return sum(mapping[style][choice]) // len(mapping[style][choice])
 
 def test_code(user_choices):
-    results = pd.read_csv('df_final.csv')
-        
+    results = pd.read_csv('df_final.csv')    
     
     # traveler = {
     #     'GENDER': 0,
@@ -49,8 +48,8 @@ def test_code(user_choices):
     #     'VISIT_ORDER': 13
     # }
     traveler = {
-        'GENDER': 0,
-        'AGE_GRP': 40.0,
+        'GENDER': user_info.get('gender'),
+        'AGE_GRP':user_info.get('age'),
         'TRAVEL_STYL_1': map_travel_style(user_choices['nature_city'], 'nature_city'),
         'TRAVEL_STYL_5': map_travel_style(user_choices['play_no_play'], 'play_no_play'),
         'TRAVEL_STYL_6': map_travel_style(user_choices['famous_discover'], 'famous_discover'),
@@ -151,6 +150,5 @@ def result():
     # result.html 파일을 렌더링
     return render_template('result.html')
 
-if __name__ == '__main__':
-    
+if __name__ == '__main__':    
     app.run(debug=True, port=5500)
