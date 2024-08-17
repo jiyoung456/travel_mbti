@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Object to store the selected values, keyed by dropdown name
+    // Object to store the selected values, keyed by dropdown data-key
     const selectedValues = {};
 
     // Find all dropdown items
@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', function(event) {
             event.preventDefault(); // Prevent default link behavior
 
-            // Retrieve the text content of the clicked item and the dropdown name
+            // Retrieve the text content of the clicked item and the dropdown data-key
             const value = this.textContent.trim();
-            const dropdownName = this.closest('.dropdown').querySelector('.btn').textContent.trim();
+            const dropdownKey = this.closest('.dropdown').querySelector('.dropdown-toggle').getAttribute('data-key');
             
             // Update the dropdown button text to show the selected item
-            this.closest('.dropdown').querySelector('.btn').textContent = value;
+            this.closest('.dropdown').querySelector('.dropdown-toggle').textContent = value;
 
-            // Update the selected value for this dropdown
-            selectedValues[dropdownName] = value;
+            // Update the selected value for this dropdown in selectedValues object
+            selectedValues[dropdownKey] = value;
 
             // Log the current state of the selectedValues object
             console.log(selectedValues);
