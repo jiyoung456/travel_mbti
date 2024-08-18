@@ -1,19 +1,18 @@
 body {
-  /* Cover the entire page */
+  background-image: url("/static/images/result-bg.jpg"); /* Cover the entire page */
   background-size: cover;
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-attachment: fixed; /* Keep the background fixed during scrolling *          /* Full viewport height */
   margin: 0; /* Remove default margin */
   padding: 0;
-  background-color: #91e5f8;
 }
 
 .header {
   background-color: rgb(227, 211, 129);
-  height: 5vh;
+  height: 8vh;
   text-align: center;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 900;
   padding-top: 0.3em;
   font-family: "Black Han Sans", sans-serif;
@@ -23,7 +22,7 @@ body {
 
 .result-bar {
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 600;
   font-family: "Black Han Sans", sans-serif;
   font-weight: 400;
@@ -31,6 +30,11 @@ body {
 }
 
 .result-content {
-  border: 1px solid red;
-  margin-top: 5em;
+  /* border: 1px solid red; */
+  margin-top: 3em;
+  padding-left: 3em;
+  font-size: x-large;
+  font-family: "Black Han Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }

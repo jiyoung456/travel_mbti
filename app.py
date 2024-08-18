@@ -71,11 +71,11 @@ def test_code(user_choices, user_info):
         (results['GENDER'] == traveler['GENDER']) &
         (results['AGE_GRP'] == traveler['AGE_GRP']) &
         (results['TRAVEL_STYL_1'] == traveler['TRAVEL_STYL_1']) &
-        (results['TRAVEL_STYL_2'] == traveler['TRAVEL_STYL_2']) &
-        (results['TRAVEL_STYL_5'] == traveler['TRAVEL_STYL_5']) &
-        # (results['TRAVEL_STYL_6'] == traveler['TRAVEL_STYL_6']) &
-        # (results['TRAVEL_STYL_7'] == traveler['TRAVEL_STYL_7']) &
-        (results['TRAVEL_STYL_8'] == traveler['TRAVEL_STYL_8'])
+        # (results['TRAVEL_STYL_2'] == traveler['TRAVEL_STYL_2']) &
+        (results['TRAVEL_STYL_5'] == traveler['TRAVEL_STYL_5'])&
+        (results['TRAVEL_STYL_6'] == traveler['TRAVEL_STYL_6']) 
+        # (results['TRAVEL_STYL_7'] == traveler['TRAVEL_STYL_7']) 
+        # (results['TRAVEL_STYL_8'] == traveler['TRAVEL_STYL_8'])
     ]
 
     # 필터링된 결과가 없으면 빈 결과를 반환
@@ -99,7 +99,11 @@ def test_code(user_choices, user_info):
         print("결과를 계산할 수 없습니다.")
         return pd.DataFrame([], columns=['VISIT_AREA_NM', 'SCORE'])
 
+    #중복제거
+    results = results.drop_duplicates(keep='first')
+    
     top_area = results.sort_values('SCORE', ascending=False)[:10]
+    top_area['SCORE'] = top_area['SCORE'].round(2)
     print(top_area)
     return top_area
 
